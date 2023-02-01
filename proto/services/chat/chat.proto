@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package greetings; 
+
+option go_package = "module-proto/go/services/chat/chat;chat";
+import "google/protobuf/timestamp.proto";
+
+message Chat {
+    string ID = 1; //@gotags: gorm:"column:id"
+    string From = 2; //@gotags: gorm:"column:from_user"
+    string To = 3; //@gotags: gorm:"column:to_user"
+    string Msg = 4; //@gotags: gorm:"column:message"
+    int32 MessageType = 5; //@gotags: gorm:"column:message_type"
+    string File = 6; //@gotags: gorm:"column:file"
+    string FileSuffix = 7; //@gotags: gorm:"column:file_suffix"
+    google.protobuf.Timestamp CreatedAt = 8; //@gotags: gorm:"column:created_at"
+    google.protobuf.Timestamp UpdatedAt = 9; //@gotags: gorm:"column:updated_at"
+}
+
+message ChatRequest {
+    string From = 1;
+    string To = 2;
+    string Msg = 3;
+}
+
+message ChatResponse {
+    Chat data = 1;
+}
+
+service ChatService {
+    rpc CreateChatService(ChatRequest) returns (ChatResponse);
+}
