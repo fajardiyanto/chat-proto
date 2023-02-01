@@ -1,8 +1,6 @@
-module module-proto
+module github.com/fajardiyanto/module-proto
 
 go 1.17
-
-replace module-proto => ./
 
 require (
 	google.golang.org/grpc v1.52.3
